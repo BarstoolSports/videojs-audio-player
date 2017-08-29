@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>videojs-audio-player Demo</title>
+  <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link href="dist/videojs-audio-player.css" rel="stylesheet">
+</head>
+<body>
+  <audio id="videojs-audio-player" class="video-js vjs-default-skin" controls preload="auto">
+    <source src="http://allthingsaudio.wikispaces.com/file/view/Crazy%20game%20.mp3/139084133/Crazy%20game%20.mp3" type='audio/mp3'/>
+  </audio>
+  
+  <ul>
+    <li><a href="test/">Run unit tests in browser.</a></li>
+    
+  </ul>
+  
+  <script src="node_modules/video.js/dist/video.js"></script>
+  <script src="dist/videojs-audio-player.js"></script>
+  <script>
+    (function(window, videojs) {
+      var player = window.player = videojs('videojs-audio-player');
+      player.audioPlayer({
+        artist: 'Pardon My Take',
+        track: 'Pardon My Take 8-28 With Brent Musburger And Reggie Miller/Draymond Green (Sort Of, Not Really)',
+        cover: 'https://deadrabbit.barstoolsports.net/wp-content/uploads/2017/07/06/pmt.jpg'
+      });
+    }(window, window.videojs));
+  </script>
+</body>
+</html>
