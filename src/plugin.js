@@ -40,7 +40,6 @@ const onPlayerReady = (player, options) => {
  */
 
 const Component = videojs.getComponent('Component')
-// const PlayToggle = videojs.getComponent('PlayToggle')
 const AudioPlayer = videojs.extend(Component, {})
 const CurrentTrack = videojs.extend(Component, {})
 const PlayerDash = videojs.extend(Component, {})
@@ -64,10 +63,18 @@ const audioPlayer = function (options) {
   _playerDash.addClass('vjs-ap-dash')
   const _currentTrack = _playerDash.addChild('CurrentTrack')
   _currentTrack.addClass('vjs-ap-current-track')
+  const _controlBar = _playerDash.addChild('ControlBar')
+  _controlBar.addClass('vjs-ap-control-bar')
+  _controlBar.removeChild('FullscreenToggle')
+  _controlBar.removeChild('RemainingTimeDisplay')
   // cover image
   const _cover = document.createElement('img')
-  _cover.classList.add('vjs-ap-cover')
+  _cover.classList.add('vjs-ap-cover--desktop')
   _cover.src = options.cover
+  // cover_mobile image
+  const _cover_mobile = document.createElement('img')
+  _cover_mobile.classList.add('vjs-ap-cover--mobile')
+  _cover_mobile.src = options.cover_mobile ? options.cover_mobile : options.cover
   // artist
   const _artist = document.createElement('h3')
   _artist.classList.add('vjs-ap-artist')
@@ -78,6 +85,7 @@ const audioPlayer = function (options) {
   _track.textContent = options.track
 
   _audioPlayer.el().prepend(_cover)
+  _audioPlayer.el().prepend(_cover_mobile)
   _currentTrack.el().append(_artist)
   _currentTrack.el().append(_track)
 }

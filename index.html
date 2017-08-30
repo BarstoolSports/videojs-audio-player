@@ -2,13 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>videojs-audio-player Demo</title>
   <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
   <link href="dist/videojs-audio-player.css" rel="stylesheet">
 </head>
 <body>
   <audio id="videojs-audio-player" class="video-js vjs-default-skin" controls preload="auto">
-    <source src="http://allthingsaudio.wikispaces.com/file/view/Crazy%20game%20.mp3/139084133/Crazy%20game%20.mp3" type='audio/mp3'/>
+    <source src="http://allthingsaudio.wikispaces.com/file/view/Five%20Tribes.mp3/139238853/Five%20Tribes.mp3" type='audio/mp3'/>
   </audio>
   
   <ul>
@@ -24,7 +25,8 @@
       player.audioPlayer({
         artist: 'Pardon My Take',
         track: 'Pardon My Take 8-28 With Brent Musburger And Reggie Miller/Draymond Green (Sort Of, Not Really)',
-        cover: 'https://deadrabbit.barstoolsports.net/wp-content/uploads/2017/07/06/pmt.jpg'
+        cover: 'https://deadrabbit.barstoolsports.net/wp-content/uploads/2017/07/06/pmt.jpg',
+        cover_mobile: 'https://cdn.barstoolsports.net/wp-content/themes/goodnews5/images/_podcasts/pardon_my_take.png'
       });
     }(window, window.videojs));
   </script>

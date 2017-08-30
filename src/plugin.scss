@@ -18,18 +18,93 @@
   display: flex;
   height: 20em;
 }
-.vjs-ap-cover {
+.vjs-ap-cover--desktop,
+.vjs-ap-cover--mobile {
   display: block;
   height: 100%;
   width: auto;
 } 
+.vjs-ap-cover--mobile {
+  display: none;
+}
 .vjs-ap-dash {
   flex: 1;
+  position: relative;
   padding: 2.4em;
   background-image: url(images/logo.png);
   background-repeat: no-repeat;
   background-size: 35px 35px;
   background-position: right 10px top 10px;
+
+  .vjs-ap-control-bar {
+    display: flex;
+    height: 6em;
+    bottom: 2.4em;
+    padding: 0 2em;
+    background-color: transparent;
+
+    .vjs-control {
+      line-height: 6em;
+
+      &:before {
+        line-height: inherit;
+        text-shadow: none;
+      }
+    }
+    .vjs-progress-holder {
+      height: 0.6em;
+      border-radius: 0.35em;
+      font-size: inherit !important;
+
+      .vjs-play-progress {
+        border-radius: 0.35em;
+        background-color: #EB3E3E;
+
+        &:after {
+          display: none !important;
+        }
+      }
+      .vjs-load-progress {
+        border-radius: 0.35em;
+
+        div {
+          border-radius: 0.35em;
+        }
+      }
+    }
+    .vjs-mouse-display {
+      display: none !important;
+    }
+    .vjs-play-progress {
+      &:before {
+        display: none;
+      }
+    }
+    .vjs-play-control {
+      width: 6em;
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      border: 2px solid #fff;
+
+      &:before {
+        font-size: 4em;
+        margin-top: -2px;
+      }
+    }
+    .vjs-progress-control,
+    .vjs-volume-menu-button .vjs-menu {
+      line-height: 1;
+    }
+    .vjs-volume-menu-button .vjs-menu {
+      opacity: 1;
+      display: block;
+
+      .vjs-menu-content {
+        width: 8em;
+        height: 6em;
+      }
+    }
+  }
 }
 .vjs-ap-current-track {
   padding-right: 5em;
