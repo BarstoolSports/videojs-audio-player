@@ -1,9 +1,48 @@
 // Sass for videojs-audio-player
 
 .video-js {
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 
   // This class is added to the video.js element by the plugin by default.
   &.vjs-audio-player {
     display: block;
+    height: auto;
+    width: auto;
+    background-color: transparent;
   }
+}
+
+.vjs-ap-container {
+  background: #344A69;
+  background: linear-gradient(180deg, #344A69 0%, #151F2F 100%);
+  display: flex;
+  height: 20em;
+}
+.vjs-ap-cover {
+  display: block;
+  height: 100%;
+  width: auto;
+} 
+.vjs-ap-dash {
+  flex: 1;
+  padding: 2.4em;
+  background-image: url(images/logo.png);
+  background-repeat: no-repeat;
+  background-size: 35px 35px;
+  background-position: right 10px top 10px;
+}
+.vjs-ap-current-track {
+  padding-right: 5em;
+}
+.vjs-ap-artist {
+  margin: 0 0 .5em;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+}
+.vjs-ap-track {
+  margin-top: 0;
+  font-weight: 500;
+  color: rgba(255,255,255,1);
+  font-size: 18px;
+  line-height: 26px;
 }

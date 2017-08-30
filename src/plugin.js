@@ -38,25 +38,48 @@ const onPlayerReady = (player, options) => {
  * @param    {Object} [options={}]
  *           An object of options left to the plugin author to define.
  */
+
+const Component = videojs.getComponent('Component')
+// const PlayToggle = videojs.getComponent('PlayToggle')
+const AudioPlayer = videojs.extend(Component, {})
+const CurrentTrack = videojs.extend(Component, {})
+const PlayerDash = videojs.extend(Component, {})
+
+videojs.registerComponent('AudioPlayer', AudioPlayer)
+videojs.registerComponent('PlayerDash', PlayerDash)
+videojs.registerComponent('CurrentTrack', CurrentTrack)
+
 const audioPlayer = function (options) {
   this.ready(() => {
-    onPlayerReady(this, videojs.mergeOptions(defaults, options))
     this.removeChild('PosterImage')
     this.removeChild('TextTrackDisplay')
     this.removeChild('BigPlayButton')
     this.removeChild('ControlBar')
-    this.removeChild('TextTrackSettings')
+    onPlayerReady(this, videojs.mergeOptions(defaults, options))
   })
-  const _player = this.el()
-  // container
-  const _container = document.createElement('div')
-  _container.classList.add('vjs-ap-container')
+
+  const _audioPlayer = this.addChild('AudioPlayer')
+  _audioPlayer.addClass('vjs-ap-container')
+  const _playerDash = _audioPlayer.addChild('PlayerDash')
+  _playerDash.addClass('vjs-ap-dash')
+  const _currentTrack = _playerDash.addChild('CurrentTrack')
+  _currentTrack.addClass('vjs-ap-current-track')
   // cover image
   const _cover = document.createElement('img')
+  _cover.classList.add('vjs-ap-cover')
   _cover.src = options.cover
+  // artist
+  const _artist = document.createElement('h3')
+  _artist.classList.add('vjs-ap-artist')
+  _artist.textContent = options.artist
+  // track
+  const _track = document.createElement('h2')
+  _track.classList.add('vjs-ap-track')
+  _track.textContent = options.track
 
-  _container.append(_cover)
-  _player.append(_container)
+  _audioPlayer.el().prepend(_cover)
+  _currentTrack.el().append(_artist)
+  _currentTrack.el().append(_track)
 }
 
 // Register the plugin with video.js.
