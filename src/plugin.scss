@@ -1,4 +1,7 @@
 // Sass for videojs-audio-player
+@mixin bp() {
+  @media (min-width: 767px) { @content; }
+}
 
 .video-js {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -18,19 +21,18 @@
   display: flex;
   height: 20em;
 }
-.vjs-ap-cover--desktop,
-.vjs-ap-cover--mobile {
-  display: block;
+.vjs-ap-cover--desktop {
+  display: none;
   height: 100%;
   width: auto;
+  @include bp() {
+    display: block;
+  }
 } 
-.vjs-ap-cover--mobile {
-  display: none;
-}
 .vjs-ap-dash {
   flex: 1;
   position: relative;
-  padding: 2.4em;
+  padding: 1.6em;
   background-image: url(images/logo.png);
   background-repeat: no-repeat;
   background-size: 35px 35px;
@@ -39,9 +41,13 @@
   .vjs-ap-control-bar {
     display: flex;
     height: 6em;
-    bottom: 2.4em;
-    padding: 0 2em;
+    bottom: 1.6em;
+    padding: 0 1.6em;
     background-color: transparent;
+    font-size: 90%;
+    @include bp() {
+      font-size: 100%;
+    }
 
     .vjs-control {
       line-height: 6em;
@@ -107,7 +113,28 @@
   }
 }
 .vjs-ap-current-track {
-  padding-right: 5em;
+  padding-right: 3.5em;
+  display: flex;
+
+  @include bp() {
+    padding-right: 5em;
+  }
+}
+.vjs-ap-track-text {
+  padding: .5em 0 0 1.5em;
+  @include bp() {
+    padding: 0;
+  }
+}
+.vjs-ap-cover--mobile {
+  display: block;
+  height: 10em;
+  width: auto;
+  border: 1px solid #2A445F;
+ 
+  @include bp() {
+    display: none;
+  }
 }
 .vjs-ap-artist {
   margin: 0 0 .5em;

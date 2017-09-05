@@ -29,7 +29,5 @@ node_modules/
 .yo-rc.json
 
 # Build-related directories
-dist/
-!/dist/images/
 docs/api/
 test/dist/

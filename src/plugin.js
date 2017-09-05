@@ -71,10 +71,13 @@ const audioPlayer = function (options) {
   const _cover = document.createElement('img')
   _cover.classList.add('vjs-ap-cover--desktop')
   _cover.src = options.cover
-  // cover_mobile image
-  const _cover_mobile = document.createElement('img')
-  _cover_mobile.classList.add('vjs-ap-cover--mobile')
-  _cover_mobile.src = options.cover_mobile ? options.cover_mobile : options.cover
+  // coverMobile image
+  const _coverMobile = document.createElement('img')
+  _coverMobile.classList.add('vjs-ap-cover--mobile')
+  _coverMobile.src = options.coverMobile ? options.coverMobile : options.cover
+  // track text
+  const _text = document.createElement('div')
+  _text.classList.add('vjs-ap-track-text')
   // artist
   const _artist = document.createElement('h3')
   _artist.classList.add('vjs-ap-artist')
@@ -85,9 +88,10 @@ const audioPlayer = function (options) {
   _track.textContent = options.track
 
   _audioPlayer.el().prepend(_cover)
-  _audioPlayer.el().prepend(_cover_mobile)
-  _currentTrack.el().append(_artist)
-  _currentTrack.el().append(_track)
+  _currentTrack.el().prepend(_coverMobile)
+  _currentTrack.el().append(_text)
+  _text.append(_artist)
+  _text.append(_track)
 }
 
 // Register the plugin with video.js.
