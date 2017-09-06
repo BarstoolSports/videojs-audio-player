@@ -1,8 +1,18 @@
 // Sass for videojs-audio-player
-@mixin bp() {
-  @media (min-width: 767px) { @content; }
+@mixin bp($point) {
+  @if $point == xs {
+    @media (min-width: 420px) { @content; }
+  }
+  @else if $point == sm {
+    @media (min-width: 600px) { @content; }
+  }
+  @else if $point == md {
+    @media (min-width: 767px) { @content; }
+  }
 }
-
+body {
+  margin: 0;
+}
 .video-js {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 
@@ -25,7 +35,7 @@
   display: none;
   height: 100%;
   width: auto;
-  @include bp() {
+  @include bp(md) {
     display: block;
   }
 } 
@@ -45,7 +55,7 @@
     padding: 0 1.6em;
     background-color: transparent;
     font-size: 90%;
-    @include bp() {
+    @include bp(md) {
       font-size: 100%;
     }
 
@@ -97,18 +107,58 @@
         margin-top: -2px;
       }
     }
+    .vjs-progress-control {
+      padding-left: 2em;
+    }
     .vjs-progress-control,
     .vjs-volume-menu-button .vjs-menu {
       line-height: 1;
     }
-    .vjs-volume-menu-button .vjs-menu {
-      opacity: 1;
-      display: block;
-
-      .vjs-menu-content {
-        width: 8em;
-        height: 6em;
+    .vjs-volume-menu-button {
+      order: 1;
+      width: 12em;
+      
+      &:before {
+        font-size: 1.6em;
+        text-align: right;
       }
+      .vjs-volume-bar {
+        margin: 2.85em 0.45em;
+        width: auto;
+      }
+      .vjs-menu {
+        opacity: 1;
+        display: block;
+
+        .vjs-menu-content {
+          width: 8em;
+          height: 6em;
+        }
+      }
+    }
+  }
+}
+.vjs-ap-time-display {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 10em;
+
+  * {
+    line-height: 1 !important;
+  }
+  > div {
+    display: block !important;
+  }
+  .vjs-time-control {
+    padding: 0;
+    font-size: 1.2em;
+    color: rgba(255,255,255,0.7);
+
+    &.vjs-time-divider {
+      padding: 0 .25rem;
+      min-width: 0;
+      text-align: center;
     }
   }
 }
@@ -116,13 +166,13 @@
   padding-right: 3.5em;
   display: flex;
 
-  @include bp() {
+  @include bp(md) {
     padding-right: 5em;
   }
 }
 .vjs-ap-track-text {
   padding: .5em 0 0 1.5em;
-  @include bp() {
+  @include bp(md) {
     padding: 0;
   }
 }
@@ -132,7 +182,7 @@
   width: auto;
   border: 1px solid #2A445F;
  
-  @include bp() {
+  @include bp(md) {
     display: none;
   }
 }
@@ -141,10 +191,31 @@
   font-weight: 600;
   color: rgba(255,255,255,0.6);
 }
-.vjs-ap-track {
+.vjs-ap-track,
+.vjs-ap-track-truncated {
   margin-top: 0;
   font-weight: 500;
   color: rgba(255,255,255,1);
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 1.6em;
+  line-height: 1.35;
+
+  @include bp(sm) {
+    font-size: 1.8em;
+  }
+}
+.vjs-ap-track {
+  display: none;
+  @include bp(sm) {
+    display: block;
+  }
+}
+.vjs-ap-track-truncated {
+  display: block;
+  @include bp(sm) {
+    display: none;
+  }
+}
+.vjs-ap-share-subscribe {
+  background-color: #EBEBEB;
+  padding: .5em;
 }

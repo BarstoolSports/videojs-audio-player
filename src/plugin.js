@@ -43,10 +43,12 @@ const Component = videojs.getComponent('Component')
 const AudioPlayer = videojs.extend(Component, {})
 const CurrentTrack = videojs.extend(Component, {})
 const PlayerDash = videojs.extend(Component, {})
+const TimeDisplay = videojs.extend(Component, {})
 
 videojs.registerComponent('AudioPlayer', AudioPlayer)
 videojs.registerComponent('PlayerDash', PlayerDash)
 videojs.registerComponent('CurrentTrack', CurrentTrack)
+videojs.registerComponent('TimeDisplay', TimeDisplay)
 
 const audioPlayer = function (options) {
   this.ready(() => {
@@ -67,6 +69,12 @@ const audioPlayer = function (options) {
   _controlBar.addClass('vjs-ap-control-bar')
   _controlBar.removeChild('FullscreenToggle')
   _controlBar.removeChild('RemainingTimeDisplay')
+  // time display
+  const _timeDisplay = _controlBar.addChild('TimeDisplay')
+  _timeDisplay.addClass('vjs-ap-time-display')
+  _timeDisplay.addChild('CurrentTimeDisplay')
+  _timeDisplay.addChild('TimeDivider')
+  _timeDisplay.addChild('DurationDisplay')
   // cover image
   const _cover = document.createElement('img')
   _cover.classList.add('vjs-ap-cover--desktop')
@@ -82,16 +90,27 @@ const audioPlayer = function (options) {
   const _artist = document.createElement('h3')
   _artist.classList.add('vjs-ap-artist')
   _artist.textContent = options.artist
+  // track (truncated)
+  const _trackTruncated = document.createElement('h2')
+  _trackTruncated.classList.add('vjs-ap-track-truncated')
+  _trackTruncated.textContent = options.track.length > 55 ? options.track.substring(0, 55) + '...' : options.track
   // track
   const _track = document.createElement('h2')
   _track.classList.add('vjs-ap-track')
   _track.textContent = options.track
+  // share/subscribe
+  // const _shareSubscribe = document.createElement('div')
+  // const _share = document.createElement('div')
+  // const _subscribe = document.createElement('div')
+  // _shareSubscribe.classList.add('vjs-ap-share-subscribe')
 
+  // this.el().append(_shareSubscribe)
   _audioPlayer.el().prepend(_cover)
   _currentTrack.el().prepend(_coverMobile)
   _currentTrack.el().append(_text)
   _text.append(_artist)
   _text.append(_track)
+  _text.append(_trackTruncated)
 }
 
 // Register the plugin with video.js.
