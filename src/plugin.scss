@@ -10,9 +10,11 @@
     @media (min-width: 767px) { @content; }
   }
 }
+
 body {
   margin: 0;
 }
+
 .video-js {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 
@@ -29,7 +31,11 @@ body {
   background: #344A69;
   background: linear-gradient(180deg, #344A69 0%, #151F2F 100%);
   display: flex;
-  height: 20em;
+  height: 18.5em;
+
+  @include bp(sm) {
+    height: 20em;
+  }
 }
 .vjs-ap-cover--desktop {
   display: none;
@@ -178,10 +184,13 @@ body {
 }
 .vjs-ap-cover--mobile {
   display: block;
-  height: 10em;
+  height: 8em;
   width: auto;
   border: 1px solid #2A445F;
  
+  @include bp(sm) {
+    height: 10em;
+  }
   @include bp(md) {
     display: none;
   }
