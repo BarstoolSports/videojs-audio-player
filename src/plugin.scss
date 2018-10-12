@@ -28,8 +28,7 @@ body {
 }
 
 .vjs-ap-container {
-  background: #344A69;
-  background: linear-gradient(180deg, #344A69 0%, #151F2F 100%);
+  background: #141e30;
   display: flex;
   height: 18.5em;
 
@@ -186,7 +185,7 @@ body {
   display: block;
   height: 8em;
   width: auto;
-  border: 1px solid #2A445F;
+  border: 1px solid #2e3f5f;
  
   @include bp(sm) {
     height: 10em;
@@ -227,4 +226,32 @@ body {
 .vjs-ap-share-subscribe {
   background-color: #EBEBEB;
   padding: .5em;
+}
+.video-js--light {
+  .vjs-ap-container {
+    background: #F9F9F9;
+  }
+  .vjs-ap-artist {
+    color: rgba(0,0,0,0.6);
+  }
+  .vjs-ap-track,
+  .vjs-ap-track-truncated {
+    color: #222;
+  }
+  .video-js .vjs-slider {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  .video-js .vjs-volume-level {
+    background-color: #222;
+  }
+  .vjs-slider-horizontal .vjs-volume-level:before {
+    right: -0.5em;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  }
+  .video-js .vjs-load-progress div {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .vjs-ap-dash .vjs-ap-control-bar .vjs-progress-holder .vjs-play-progress {
+    background-color: #222;
+  }
 }
